@@ -3,7 +3,8 @@
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.119%2B-green.svg)](https://fastapi.tiangolo.com/)
 [![LangGraph](https://img.shields.io/badge/Orchestration-LangGraph-purple.svg)](https://github.com/langchain-ai/langgraph)
-[![Streamlit](https://img.shields.io/badge/Frontend-Streamlit-red.svg)](https://streamlit.io/)
+[![React](https://img.shields.io/badge/Frontend-React_19_Vite-61dafb.svg)](https://react.dev/)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind-CSS_v4-38bdf8.svg)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 An enterprise multi-agent AI system that ingests any software codebase (via ZIP upload or public GitHub URL) and produces role-specific documentation with interactive steering, live progress streaming, sub-3-second grounded RAG Q&A, and dynamic Mermaid diagrams.
@@ -67,6 +68,7 @@ The system produces clearly differentiated reports tailored to two distinct audi
 
 ### 1. Prerequisites
 - Python 3.11+
+- Node.js 18+ (Node 20+ recommended)
 - Git
 
 ### 2. Local Setup
@@ -75,8 +77,13 @@ The system produces clearly differentiated reports tailored to two distinct audi
 git clone https://github.com/sangavikavi/AI-Codebase-Analysis-Agent.git
 cd AI-Codebase-Analysis-Agent
 
-# Install dependencies
+# Install backend dependencies
 pip install -r requirements.txt
+
+# Install frontend React dependencies
+cd frontend
+npm install
+cd ..
 
 # Copy environment variables
 cp .env.example .env
@@ -88,11 +95,12 @@ uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 Swagger UI will be reachable at: **`http://localhost:8000/docs`**
 
-### 4. Run the Streamlit Dashboard
+### 4. Run the React + Tailwind CSS v4 Dashboard
 ```bash
-streamlit run frontend/app.py --server.port 8501
+cd frontend
+npm run dev
 ```
-Open **`http://localhost:8501`** in your browser.
+Open **`http://localhost:5173`** in your browser.
 
 ### 5. One-Command Setup with Docker Compose
 ```bash
@@ -101,7 +109,7 @@ docker-compose up --build
 This launches:
 - **PostgreSQL + pgvector** on port `5432`
 - **FastAPI Backend** on port `8000`
-- **Streamlit Frontend** on port `8501`
+- **React Frontend** on port `5173`
 - **Langfuse Observability** on port `3000`
 
 ---
